@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    form
+        .mb-6
+            label.block.mb-2.text-sm.font-medium.text-gray-900(for='message' class='dark:text-white') Enter the message you want to share then click Generate URL.
+            textarea#message.block.w-full.text-sm.text-gray-900.bg-gray-50.rounded-lg.border.border-gray-300(rows='4' class='p-2.5 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500')
+        .grid.place-items-center
+            button.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.w-full.px-5.text-center(type='submit' class='hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800') Generate URL
+
+
+
+
