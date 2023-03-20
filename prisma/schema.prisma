@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Message {
+  intMessageId    Int         @id @default(autoincrement())
+  strSecureId     String
+  strValue        String
+  dtmCreated      DateTime    @default(now())
+}

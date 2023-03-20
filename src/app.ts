@@ -1,6 +1,7 @@
 import express, { Express } from "express";
 import * as dotenv from "dotenv";
 import { router } from "./router";
+import bodyParser from "body-parser";
 
 dotenv.config();
 
@@ -10,6 +11,7 @@ const port = process.env.PORT ?? 8000;
 app.set("views", "./src/views");
 app.set("view engine", "pug");
 
+app.use(bodyParser.json());
 app.use(router);
 app.use(express.static("public"));
 
