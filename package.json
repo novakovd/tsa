@@ -1,7 +1,7 @@
 {
-  "name": "sts",
-  "version": "1.0.0",
-  "description": "",
+  "name": "tsa",
+  "version": "0.0.1",
+  "description": "Text sharing app",
   "main": "dist/app.js",
   "scripts": {
     "build": "tsc",
