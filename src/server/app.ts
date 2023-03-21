@@ -8,7 +8,7 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT ?? 8000;
 
-app.set("views", "./src/views");
+app.set("views", "./src/server/views");
 app.set("view engine", "pug");
 
 app.use(bodyParser.json());

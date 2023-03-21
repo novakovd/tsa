@@ -1,0 +1,19 @@
+extends layout
+
+include ./mixins/button
+include ./mixins/textarea
+
+block scripts
+    script(src="/home.min.js")
+
+block content
+    form#message-form
+        .mb-6
+            label.block.mb-2.text-sm.font-medium.text-gray-900(for='message-text' class='dark:text-white') Enter the message you want to share then click Generate URL.
+            +texarea('message-text')
+        .grid.place-items-center
+            +button('submit-button', 'Generate URL')
+
+
+
+

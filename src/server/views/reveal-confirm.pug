@@ -1,0 +1,13 @@
+extends layout
+
+include ./mixins/button
+
+block scripts
+    script(src="/reveal-confirm.min.js")
+
+block content
+    .flex.items-center.flex-col.gap-6
+        span
+            p.antialiased.text-3xl.text-center Once revealed, this message will be destroyed!
+        span
+            +button('reveal-message-button', 'Reveal the message')(secureId=secureId)
