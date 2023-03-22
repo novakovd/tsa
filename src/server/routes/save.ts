@@ -7,7 +7,7 @@ import { saveMessage } from "../utils/message/save-message";
 export const save = async (req: Request, res: Response) => {
   const msg = await saveMessage(validateMessage(req.body).message);
   const url = generateMessageUrl(msg.secureId);
-  const qrCodeUrl = await QRCode.toDataURL(url);
+  const qrCodeUrl = await QRCode.toDataURL(url, { width: 204 });
 
   res.render("save", { url: url, qrCodeUrl: qrCodeUrl });
 };

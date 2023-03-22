@@ -1,19 +1,21 @@
 import { getElement } from "./utils/get-element";
 import { fetchPage } from "./utils/fetch-page";
+import { getDynamicLoadContainer } from "./utils/get-dynamic-load-container";
+import { bindCopyToClipboard } from "./utils/bind-copy-to-clipboard";
+import { getMessageTextarea } from "./utils/get-message-textarea";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const mainContainer = getElement("#main-app-container");
-  const revealMessageButton = getElement(
-    "#reveal-message-button",
-    mainContainer
+  const dynamicLoadContainer = getDynamicLoadContainer();
+  const revealMessageButton = getElement<HTMLButtonElement>(
+    "#reveal-message-button"
   );
 
-  revealMessageButton.addEventListener("click", (e) => {
-    fetchPage<DOMStringMap>(
+  revealMessageButton.addEventListener("click", async (e) => {
+    dynamicLoadContainer.innerHTML = await fetchPage<DOMStringMap>(
       "/reveal",
       (e.target as HTMLDataElement).dataset
-    ).then((html) => {
-      mainContainer.innerHTML = html;
-    });
+    );
+
+    bindCopyToClipboard(() => getMessageTextarea().value);
   });
 });

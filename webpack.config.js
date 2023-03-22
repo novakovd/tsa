@@ -1,6 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const BuildHashPlugin = require("build-hash-webpack-plugin");
 
 module.exports = {
     entry: {
@@ -40,5 +41,6 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin({filename: 'app.min.css'}),
         new CssMinimizerPlugin(),
+        new BuildHashPlugin({filename: "../dist/webpack-build-hash.json"})
     ],
 }

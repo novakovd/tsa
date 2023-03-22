@@ -1,9 +1,5 @@
-export const getElement = (
-  selector: string,
-  parent: Element | null = null
-): Element => {
-  const getFrom = null === parent ? document : parent;
-  const element = getFrom.querySelector(selector);
+export const getElement = <T extends HTMLElement>(selector: string): T => {
+  const element = document.querySelector<T>(selector);
 
   if (null === element) throw new Error("Element not found");
 
