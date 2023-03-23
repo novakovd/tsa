@@ -1,17 +1,12 @@
 import Joi from "joi";
+import { MessagePayload } from "../../../shared/types/payload";
 
-export interface MessagePayload {
-  message: string;
-}
-
-export const validateMessage = (value: string): MessagePayload => {
+export const validateMessage = (payload: MessagePayload): MessagePayload => {
   const validationResult = Joi.object({
-    message: Joi.string().alphanum().min(1).max(500).required(),
-  }).validate(value);
+    message: Joi.string().min(1).max(500).required(),
+  }).validate(payload);
 
-  if (validationResult.error) {
-    throw new Error("Invalid payload");
-  }
+  if (validationResult.error) throw validationResult.error;
 
   return validationResult.value;
 };

@@ -4,6 +4,7 @@ include ./mixins/button
 include ./mixins/textarea
 include ./mixins/dynamic-load-container
 include ./mixins/script
+include ./mixins/unexpected-error
 
 block scripts
     +script('home.min.js')
@@ -11,9 +12,15 @@ block scripts
 block content
     +dynamicLoadContainer
         form#message-form
-            .mb-6
+            .div
                 label.block.mb-2.text-xl.font-medium.text-gray-900(for='message-textarea' class='dark:text-white') Enter the message you want to share then click Generate URL
                 +texarea('message-textarea')
+            .grid.place-items-end.mb-6.text-base
+                span#chars-couter.mt-1
+                    span#chars-counter-current 0
+                    span /
+                    span#chars-counter-max 500
+            +unexpectedError
             .grid.place-items-center
                 span.w-56
                     +button('submit-button', 'Generate URL')

@@ -1,3 +1,5 @@
+import { StatusCodes } from "http-status-codes";
+
 export const fetchPage = async <T>(url: string, data: T): Promise<string> => {
   return fetch(url, {
     method: "POST",
@@ -10,5 +12,12 @@ export const fetchPage = async <T>(url: string, data: T): Promise<string> => {
     redirect: "follow",
     referrerPolicy: "no-referrer",
     body: JSON.stringify(data),
-  }).then((res) => res.text());
+  })
+    .then((res) => {
+      if (res.status !== StatusCodes.OK) throw new Error("Invalid request");
+
+      return res;
+    })
+    .then((res) => res.json())
+    .then((json) => json.html);
 };

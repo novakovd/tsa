@@ -7,6 +7,9 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:import/typescript",
   ],
+  rules: {
+    "@typescript-eslint/lines-between-class-members": "off"
+  },
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: "./tsconfig.eslint.json",
