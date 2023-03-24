@@ -1,4 +1,10 @@
 extends layout
 
+include ./mixins/button
+
 block content
-    p This message does not exist or has already been revealed
+  .flex.items-center.flex-col.gap-4
+    span
+      p.antialiased.text-3xl.text-center This message does not exist or has already been revealed
+    span.flex.items-center.flex-col.gap-10.w-56.mt-6
+      +button('reveal-another-message-button', 'Reveal another message', '/').w-full

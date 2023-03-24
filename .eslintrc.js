@@ -8,7 +8,8 @@ module.exports = {
     "plugin:import/typescript",
   ],
   rules: {
-    "@typescript-eslint/lines-between-class-members": "off"
+    "@typescript-eslint/lines-between-class-members": "off",
+    "@typescript-eslint/no-non-null-assertion": "off"
   },
   parser: "@typescript-eslint/parser",
   parserOptions: {

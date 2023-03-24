@@ -5,12 +5,14 @@ include ./mixins/dynamic-load-container
 include ./mixins/script
 
 block scripts
-    +script('reveal-confirm.min.js')
+  +script('reveal-confirm.min.js')
 
 block content
-    +dynamicLoadContainer
-        .flex.items-center.flex-col.gap-6
-            span
-                p.antialiased.text-3xl.text-center Once revealed, this message will be destroyed!
-            span
-                +button('reveal-message-button', 'Reveal the message')(secureId=secureId)
+  +dynamicLoadContainer
+    .flex.items-center.flex-col.gap-6
+      span
+        p.antialiased.text-3xl.text-center Once revealed, this message will be destroyed!
+      span
+        +button('reveal-message-button', 'Reveal the message')(
+          secureId=secureId
+        )

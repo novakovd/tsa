@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import { NextFunction, Request, Response } from "express";
-import { HTMLResponse } from "../../shared/types/response";
+import { HTMLResponse } from "../types/response";
 import { ValidationError } from "joi";
 
 export const handleValidationError = (

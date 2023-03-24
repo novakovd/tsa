@@ -2,7 +2,7 @@ include ./mixins/textarea
 include ./mixins/button
 
 .flex.items-center.flex-col.gap-6
-    span.w-full
-        +texarea('message-textarea')(value=messageValue disabled=true)
-    span
-        +button('copy-to-clipboard-button', 'Copy to clipboard')
+  span.w-full
+    +texarea('message-textarea')(value=messageValue, disabled)
+  span
+    +button('copy-to-clipboard-button', 'Copy to clipboard')

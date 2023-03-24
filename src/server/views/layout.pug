@@ -1,20 +1,33 @@
 head
-    meta(charset='utf-8')
-    meta(http-equiv='x-ua-compatible' content='ie=edge')
-    meta(name='viewport' content='width=device-width, initial-scale=1')
-    title
-    link(rel='stylesheet' href='/app.min.css?v=' + process.env.WEBPACK_BUILD_HASH)
-    block scripts
+  meta(charset="utf-8")
+  meta(http-equiv="x-ua-compatible", content="ie=edge")
+  meta(name="viewport", content="width=device-width, initial-scale=1")
+  title
+  link(
+    rel="stylesheet",
+    href="/app.min.css?v=" + process.env.WEBPACK_BUILD_HASH
+  )
+  block scripts
 body.bg-gray-100.font-sans.leading-normal.tracking-normal
-    nav#header.fixed.w-full.z-10.top-0
-        .w-full.mx-auto.flex.flex-wrap.items-center.justify-between.mt-0.py-3(class='md:max-w-4xl')
-            .pl-4
-                a.text-gray-900.text-base.no-underline.font-extrabold.text-xl(class='hover:no-underline' href='/')
-                    | TSA
-            #nav-content.w-full.flex-grow.hidden.mt-2.bg-gray-100.z-20(class='lg:flex lg:items-center lg:w-auto lg:block lg:mt-0 md:bg-transparent')
-                ul.list-reset.justify-end.flex-1.items-center(class='lg:flex')
-                    li.mr-3
-                        a.inline-block.text-gray-600.no-underline.py-2.px-4(class='hover:text-gray-900 hover:text-underline' href='#') GitHub
-    #main-app-container.container.w-full.mx-auto.pt-20(class='md:max-w-4xl')
-        .w-full.px-4.text-xl.text-gray-800.leading-normal(class='md:px-6')
-            block content
+  nav#header.fixed.w-full.z-10.top-0
+    .w-full.mx-auto.flex.flex-wrap.items-center.justify-between.mt-0.py-3(
+      class="md:max-w-4xl"
+    )
+      .pl-4
+        a.text-gray-900.text-base.no-underline.font-extrabold.text-xl(
+          class="hover:no-underline",
+          href="/"
+        )
+          | TSA
+      #nav-content.w-full.flex-grow.hidden.mt-2.bg-gray-100.z-20(
+        class="lg:flex lg:items-center lg:w-auto lg:block lg:mt-0 md:bg-transparent"
+      )
+        ul.list-reset.justify-end.flex-1.items-center(class="lg:flex")
+          li.mr-3
+            a.inline-block.text-gray-600.no-underline.py-2.px-4(
+              class="hover:text-gray-900 hover:text-underline",
+              href="#"
+            ) GitHub
+  #main-app-container.container.w-full.mx-auto.pt-20(class="md:max-w-4xl")
+    .w-full.px-4.text-xl.text-gray-800.leading-normal(class="md:px-6")
+      block content

@@ -1,14 +1,12 @@
 import { NextFunction, Request, Response } from "express";
-import { findMessage } from "../utils/message/find-message";
-import { removeMessage } from "../utils/message/remove-message";
+import { findMessage } from "../repositories/message";
+import { removeMessage } from "../repositories/message";
 import { SecureIdPayload } from "../../shared/types/payload";
-import { HTMLResponse } from "../../shared/types/response";
+import { HTMLResponse } from "../types/response";
 import { getReasonPhrase, StatusCodes } from "http-status-codes";
-import { resolveViewPath } from "../utils/resolve-view-path";
-import * as pug from "pug";
-import { validateSecureid } from "../utils/validate-secureid";
-import { NotFoundError } from "@prisma/client/runtime";
-import { HTTPNotFoundError } from "../../shared/types/error";
+import { validateSecureid } from "../utils/validate";
+import { HTTPNotFoundError } from "../types/error";
+import { renderView } from "../utils/render-view";
 
 export const reveal = async (
   req: Request<SecureIdPayload>,
@@ -29,7 +27,7 @@ export const reveal = async (
 
   res.send({
     message: getReasonPhrase(StatusCodes.OK),
-    html: pug.renderFile(resolveViewPath(req.app, "reveal"), {
+    html: renderView("reveal", {
       messageValue: message.value,
     }),
   });

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { HTMLResponse } from "../../shared/types/response";
-import { HTTPError } from "../../shared/types/error";
+import { HTMLResponse } from "../types/response";
+import { HTTPError } from "../types/error";
 
 export const handleHTTPError = (
   err: Error,

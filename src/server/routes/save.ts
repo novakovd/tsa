@@ -1,13 +1,12 @@
 import { NextFunction, Request, Response } from "express";
-import QRCode from "qrcode";
-import { validateMessage } from "../utils/message/validate-message";
-import { generateMessageUrl } from "../utils/message/get-message-url";
-import { saveMessage } from "../utils/message/save-message";
+import { validateMessage } from "../utils/validate";
+import { generateMessageUrl } from "../utils/url";
+import { saveMessage } from "../repositories/message";
 import { MessagePayload } from "../../shared/types/payload";
-import * as pug from "pug";
 import { getReasonPhrase, StatusCodes } from "http-status-codes";
-import { resolveViewPath } from "../utils/resolve-view-path";
-import { HTMLResponse } from "../../shared/types/response";
+import { HTMLResponse } from "../types/response";
+import { getQrCodeDataUrl } from "../utils/url";
+import { renderView } from "../utils/render-view";
 
 export const save = async (
   req: Request<MessagePayload>,
@@ -22,11 +21,11 @@ export const save = async (
 
   const msg = await saveMessage(req.body.message);
   const url = generateMessageUrl(msg.secureId);
-  const qrCodeUrl = await QRCode.toDataURL(url, { width: 204 });
+  const qrCodeUrl = await getQrCodeDataUrl(url);
 
   res.status(StatusCodes.OK).send({
     message: getReasonPhrase(StatusCodes.OK),
-    html: pug.renderFile(resolveViewPath(req.app, "save"), {
+    html: renderView("save", {
       url: url,
       qrCodeUrl: qrCodeUrl,
     }),

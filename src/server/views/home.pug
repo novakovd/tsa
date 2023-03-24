@@ -7,24 +7,23 @@ include ./mixins/script
 include ./mixins/unexpected-error
 
 block scripts
-    +script('home.min.js')
+  +script('home.min.js')
 
 block content
-    +dynamicLoadContainer
-        form#message-form
-            .div
-                label.block.mb-2.text-xl.font-medium.text-gray-900(for='message-textarea' class='dark:text-white') Enter the message you want to share then click Generate URL
-                +texarea('message-textarea')
-            .grid.place-items-end.mb-6.text-base
-                span#chars-couter.mt-1
-                    span#chars-counter-current 0
-                    span /
-                    span#chars-counter-max 500
-            +unexpectedError
-            .grid.place-items-center
-                span.w-56
-                    +button('submit-button', 'Generate URL')
-
-
-
-
+  +dynamicLoadContainer
+    form#message-form
+      .div
+        label.block.mb-2.text-xl.font-medium.text-gray-900(
+          for="message-textarea",
+          class="dark:text-white"
+        ) Enter the message you want to share then click Generate URL
+        +texarea('message-textarea')
+      .grid.place-items-end.mb-6.text-base
+        span#chars-couter.mt-1
+          span#chars-counter-current 0
+          span /
+          span#chars-counter-max 500
+      +unexpectedError
+      .grid.place-items-center
+        span.w-56
+          +button('submit-button', 'Generate URL')

@@ -1,13 +1,15 @@
 include ./mixins/button
 
 .flex.items-center.flex-col.gap-4
-    span
-        p.antialiased.text-3xl.text-center Here is the url that will allow you to share your message
-    span
-        a(id='message-url' href=url, class='hover:underline')= url
-    span.box-content.p-2.border-2
-        img(src=qrCodeUrl)
-    span.flex.items-center.flex-col.gap-10.w-56.mt-10
-        +button('copy-to-clipboard-button', 'Copy to clipboard')(class='w-full')
-        +button('reveal-another-message-button', 'Reveal another message', '/')(class='w-full')
-
+  span
+    p.antialiased.text-3xl.text-center Here is the url that will allow you to share your message
+  span
+    a#message-url.font-medium.text-blue-600(
+      href=url,
+      class="dark:text-blue-500 hover:underline"
+    )= url
+  span.box-content.p-2.border-2
+    img(src=qrCodeUrl)
+  span.flex.items-center.flex-col.gap-10.w-56.mt-10
+    +button('copy-to-clipboard-button', 'Copy to clipboard').w-full
+    +button('reveal-another-message-button', 'Reveal another message', '/').w-full
