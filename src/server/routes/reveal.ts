@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { findMessage } from "../repositories/message";
 import { removeMessage } from "../repositories/message";
 import { SecureIdPayload } from "../../shared/types/payload";
@@ -6,22 +6,16 @@ import { HTMLResponse } from "../types/response";
 import { getReasonPhrase, StatusCodes } from "http-status-codes";
 import { validateSecureid } from "../utils/validate";
 import { HTTPNotFoundError } from "../types/error";
-import { renderView } from "../utils/render-view";
+import { renderView } from "../utils/general";
+import { wrapAsyncRoute } from "../utils/general";
 
-export const reveal = async (
+const route = async (
   req: Request<SecureIdPayload>,
-  res: Response<HTMLResponse>,
-  next: NextFunction
+  res: Response<HTMLResponse>
 ) => {
-  try {
-    validateSecureid(req.body);
-  } catch (e: unknown) {
-    return next(e);
-  }
+  const message = await findMessage(validateSecureid(req.body).secureId);
 
-  const message = await findMessage(req.body.secureId);
-
-  if (null === message) return next(new HTTPNotFoundError("Message not found"));
+  if (null === message) throw new HTTPNotFoundError("Message not found");
 
   await removeMessage(req.body.secureId);
 
@@ -32,3 +26,5 @@ export const reveal = async (
     }),
   });
 };
+
+export const reveal = wrapAsyncRoute(route);

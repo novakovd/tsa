@@ -30,7 +30,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "public"),
-        filename: "[name].min.js"
+        filename: "assets/[name].min.js"
     },
     optimization: {
         minimizer: [
@@ -39,7 +39,7 @@ module.exports = {
         ],
     },
     plugins: [
-        new MiniCssExtractPlugin({filename: 'app.min.css'}),
+        new MiniCssExtractPlugin({filename: 'assets/app.min.css'}),
         new CssMinimizerPlugin(),
         new BuildHashPlugin({filename: "../dist/webpack-build-hash.json"})
     ],

@@ -10,9 +10,10 @@ block scripts
 block content
   +dynamicLoadContainer
     .flex.items-center.flex-col.gap-6
-      span
+      .div
         p.antialiased.text-3xl.text-center Once revealed, this message will be destroyed!
-      span
-        +button('reveal-message-button', 'Reveal the message')(
-          secureId=secureId
-        )
+      .grid.place-items-center
+        span.w-56
+          +button('reveal-message-button', 'Reveal the message')(
+            secureId=secureId
+          )

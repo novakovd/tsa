@@ -17,12 +17,12 @@ block content
           for="message-textarea",
           class="dark:text-white"
         ) Enter the message you want to share then click Generate URL
-        +texarea('message-textarea')
+        +texarea('message-textarea')(maxlenght=maxTextLength)
       .grid.place-items-end.mb-6.text-base
         span#chars-couter.mt-1
           span#chars-counter-current 0
           span /
-          span#chars-counter-max 500
+          span#chars-counter-max= maxTextLength
       +unexpectedError
       .grid.place-items-center
         span.w-56

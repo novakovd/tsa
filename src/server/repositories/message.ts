@@ -1,5 +1,5 @@
-import { Message, PrismaClient } from "@prisma/client";
-import { generateSecureId } from "../utils/get-secure-id";
+import { Message } from "@prisma/client";
+import { generateSecureId } from "../utils/general";
 import { getPrismaClient } from "../utils/container";
 
 export const findMessage = async (

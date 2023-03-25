@@ -11,7 +11,7 @@ import { LogError } from "./middlewares/log-error";
 const router = Router();
 
 router.get("/", home);
-router.get("/r/:secureId", revealConfirm);
+router.get("/:secureId", revealConfirm);
 router.post("/save", save);
 router.post("/reveal", reveal);
 

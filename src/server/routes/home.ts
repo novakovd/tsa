@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { HTTPNotFoundError } from "../types/error";
+import { getConfig } from "../utils/container";
 
 export const home = (req: Request, res: Response) => {
-  res.render("home");
+  res.render("home", { maxTextLength: getConfig().maxTextLength });
 };

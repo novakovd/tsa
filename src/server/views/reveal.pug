@@ -2,7 +2,8 @@ include ./mixins/textarea
 include ./mixins/button
 
 .flex.items-center.flex-col.gap-6
-  span.w-full
+  .w-full
     +texarea('message-textarea')(value=messageValue, disabled)
-  span
-    +button('copy-to-clipboard-button', 'Copy to clipboard')
+  .grid.place-items-center
+    span.w-56
+      +button('copy-to-clipboard-button', 'Copy to clipboard')

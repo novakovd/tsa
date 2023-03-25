@@ -1,12 +1,12 @@
 import { StatusCodes } from "http-status-codes";
 
-export abstract class HTTPError implements Error {
-  readonly message: string;
+export abstract class HTTPError extends Error {
   readonly name: string;
   readonly statusCode: number;
 
   protected constructor(message: string, name: string, statusCode: number) {
-    this.message = message;
+    super(message);
+
     this.name = name;
     this.statusCode = statusCode;
   }

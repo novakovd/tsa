@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { validateMessage } from "../utils/validate";
 import { generateMessageUrl } from "../utils/url";
 import { saveMessage } from "../repositories/message";
@@ -6,20 +6,14 @@ import { MessagePayload } from "../../shared/types/payload";
 import { getReasonPhrase, StatusCodes } from "http-status-codes";
 import { HTMLResponse } from "../types/response";
 import { getQrCodeDataUrl } from "../utils/url";
-import { renderView } from "../utils/render-view";
+import { renderView } from "../utils/general";
+import { wrapAsyncRoute } from "../utils/general";
 
-export const save = async (
+const route = async (
   req: Request<MessagePayload>,
-  res: Response<HTMLResponse>,
-  next: NextFunction
+  res: Response<HTMLResponse>
 ) => {
-  try {
-    validateMessage(req.body);
-  } catch (e: unknown) {
-    return next(e);
-  }
-
-  const msg = await saveMessage(req.body.message);
+  const msg = await saveMessage(validateMessage(req.body).message);
   const url = generateMessageUrl(msg.secureId);
   const qrCodeUrl = await getQrCodeDataUrl(url);
 
@@ -31,3 +25,5 @@ export const save = async (
     }),
   });
 };
+
+export const save = wrapAsyncRoute(route);

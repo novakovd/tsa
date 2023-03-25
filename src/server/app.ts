@@ -5,9 +5,10 @@ import "dotenv-defaults/config";
 import { router } from "./router";
 import bodyParser from "body-parser";
 import * as process from "process";
-import { getWebpackBuildHash } from "./utils/get-webpack-build-hash";
+import { getWebpackBuildHash } from "./utils/general";
 import { setupDi } from "./setup-di";
 import { getConfig, getLogger } from "./utils/container";
+import { any } from "./routes/any";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.set("view engine", "pug");
 app.use(bodyParser.json());
 app.use(router);
 app.use(express.static("public"));
+app.use(any);
 
 app.listen(getConfig().appPort, () => {
   getLogger().info(`Server is running at ${getConfig().appUrl}`);
