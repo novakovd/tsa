@@ -14,8 +14,7 @@ block content
     form#message-form
       .div
         label.block.mb-2.text-xl.font-medium.text-gray-900(
-          for="message-textarea",
-          class="dark:text-white"
+          for="message-textarea"
         ) Enter the message you want to share then click Generate URL
         +texarea('message-textarea')(maxlenght=maxTextLength)
       .grid.place-items-end.mb-6.text-base

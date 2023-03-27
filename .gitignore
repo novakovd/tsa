@@ -6,3 +6,4 @@ public/assets/*.css
 public/assets/*.js
 prisma/*.db
 logs/*.log
+data

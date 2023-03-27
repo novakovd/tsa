@@ -4,6 +4,6 @@ mixin button(id, text, href)
     href=href,
     data-secureId!=attributes.secureId,
     type="button",
-    class="hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" + attributes.class
+    class="hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 py-2.5 bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" + attributes.class
   )= text
     block

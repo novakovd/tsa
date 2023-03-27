@@ -8,15 +8,3 @@ Cypress.Commands.add("getRevealMessageButton", () =>
 Cypress.Commands.add("getCopyToClipboardButton", () =>
   cy.get("#copy-to-clipboard-button")
 );
-
-Cypress.Commands.add("requestClipboardPermissions", () => {
-  cy.wrap(
-    Cypress.automation("remote:debugger:protocol", {
-      command: "Browser.grantPermissions",
-      params: {
-        permissions: ["clipboardReadWrite", "clipboardSanitizedWrite"],
-        origin: window.location.origin,
-      },
-    })
-  );
-});

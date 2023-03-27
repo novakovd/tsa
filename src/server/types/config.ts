@@ -24,6 +24,6 @@ export class Config implements ConfigPropsAware {
 
     this.appUrl = `${this.appProto}://${this.appHostname}${port}`;
     this.viewsPath = "./src/server/views";
-    this.databaseUrl = "file:./prod.db";
+    this.databaseUrl = "file:../data/prod.db";
   }
 }

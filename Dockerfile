@@ -10,6 +10,7 @@ RUN npm i
 
 COPY . .
 
+RUN npm run db:init:client
 RUN npm run build:all
 
 FROM node AS final
@@ -31,7 +32,4 @@ COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/src/server/views ./src/server/views
 
-RUN npm run migration:run
-RUN npm run db:client:init
-
-ENTRYPOINT ["npm", "run", "start"]
+ENTRYPOINT ["/bin/sh", "-c", "npm run db:run:all > /dev/null && npm run start"]
