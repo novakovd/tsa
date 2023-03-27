@@ -10,7 +10,8 @@
     "build:frontend": "webpack --mode=production",
     "start": "node dist/server/app.js",
     "lint": "eslint --fix . && prettier --write .",
-    "start:dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/server/app.js\""
+    "start:dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/server/app.js\"",
+    "tests:run": "npx cypress run --headless"
   },
   "keywords": [],
   "author": "",
@@ -54,6 +55,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^3.6.0",
     "css-minimizer-webpack-plugin": "^4.2.2",
+    "cypress": "^12.8.1",
     "eslint": "^8.36.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
