@@ -14,9 +14,10 @@ dotenv.config();
 
 const app = express();
 
-process.env.WEBPACK_BUILD_HASH = getWebpackBuildHash();
-
 setupDi();
+
+process.env.WEBPACK_BUILD_HASH = getWebpackBuildHash();
+process.env.DATABASE_URL = getConfig().databaseUrl;
 
 app.set("views", getConfig().viewsPath);
 app.set("view engine", "pug");

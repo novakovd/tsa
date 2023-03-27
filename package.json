@@ -4,13 +4,14 @@
   "description": "Text sharing app",
   "main": "dist/app.js",
   "scripts": {
+    "migration:run": "DATABASE_URL=file:./prod.db npx prisma migrate deploy",
+    "db:client:init": "npx prisma generate",
     "build:all": "npm run build:server && npm run build:frontend",
-    "build": "npm run build:all",
     "build:server": "tsc",
     "build:frontend": "webpack --mode=production",
     "start": "node dist/server/app.js",
-    "lint": "eslint --fix . && prettier --write .",
     "start:dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/server/app.js\"",
+    "lint": "eslint --fix . && prettier --write .",
     "tests:run": "npx cypress run --headless"
   },
   "keywords": [],
