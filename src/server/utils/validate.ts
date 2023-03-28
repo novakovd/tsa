@@ -48,7 +48,7 @@ export const validateEnv = (): ConfigPropsAware => {
   };
 
   return {
-    appPort: validate<number>(Joi.number().integer(), "PORT"),
+    appPort: validate<number>(Joi.number().integer(), "APP_PORT"),
     appHostname: validate<string>(Joi.string().hostname(), "APP_HOSTNAME"),
     appProto: validate<string>(
       Joi.string().valid("http", "https"),

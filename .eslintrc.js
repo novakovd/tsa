@@ -10,7 +10,8 @@ module.exports = {
   rules: {
     "@typescript-eslint/lines-between-class-members": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
   },
   parser: "@typescript-eslint/parser",
   parserOptions: {
