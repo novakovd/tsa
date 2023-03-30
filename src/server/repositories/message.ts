@@ -22,11 +22,14 @@ export const removeMessage = async (
   });
 };
 
-export const saveMessage = async (message: string): Promise<Message> => {
+export const saveMessage = async (
+  message: string,
+  secureId: string
+): Promise<Message> => {
   return getPrismaClient().message.create({
     data: {
       value: message,
-      secureId: createSecureId(),
+      secureId: secureId,
     },
   });
 };

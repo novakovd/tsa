@@ -2,7 +2,9 @@ import Joi from "joi";
 import { MessagePayload, SecureIdPayload } from "../../shared/types/payload";
 import { getConfig } from "../providers/container-service";
 
-export const validateMessage = (payload: MessagePayload): MessagePayload => {
+export const validateMessagePayload = (
+  payload: MessagePayload
+): MessagePayload => {
   const validationResult = Joi.object({
     message: Joi.string()
       .min(1)
@@ -15,7 +17,9 @@ export const validateMessage = (payload: MessagePayload): MessagePayload => {
   return validationResult.value;
 };
 
-export const validateSecureId = (payload: SecureIdPayload): SecureIdPayload => {
+export const validateSecureIdPayload = (
+  payload: SecureIdPayload
+): SecureIdPayload => {
   const validationResult = Joi.object({
     secureId: Joi.string().required(),
   }).validate(payload);

@@ -17,3 +17,9 @@ export class HTTPNotFoundError extends HTTPError {
     super(message, "HTTPNotFoundError", StatusCodes.NOT_FOUND);
   }
 }
+
+export class UnableToGenerateSecureIdError extends Error {
+  constructor() {
+    super("Unable to generate secureId");
+  }
+}
