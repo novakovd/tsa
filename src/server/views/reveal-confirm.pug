@@ -3,6 +3,7 @@ extends layout
 include ./mixins/button
 include ./mixins/dynamic-load-container
 include ./mixins/script
+include ./mixins/unexpected-error
 
 block scripts
   +script('reveal-confirm.min.js')
@@ -12,6 +13,7 @@ block content
     .flex.items-center.flex-col.gap-6
       .div
         p.antialiased.text-3xl.text-center Once revealed, this message will be destroyed!
+      +unexpectedError
       .grid.place-items-center
         span.w-56
           +button('reveal-message-button', 'Reveal the message')(

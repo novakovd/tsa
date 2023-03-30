@@ -1,21 +1,21 @@
 import { Request, Response } from "express";
-import { validateMessage } from "../utils/validate";
-import { generateMessageUrl } from "../utils/url";
+import { validateMessage } from "../validators/payload";
+import { createMessageUrl } from "../creators/url";
 import { saveMessage } from "../repositories/message";
 import { MessagePayload } from "../../shared/types/payload";
 import { getReasonPhrase, StatusCodes } from "http-status-codes";
 import { HTMLResponse } from "../types/response";
-import { getQrCodeDataUrl } from "../utils/url";
-import { renderView } from "../utils/general";
-import { wrapAsyncRoute } from "../utils/general";
+import { createQrCodeDataUrl } from "../creators/url";
+import { renderView } from "../providers/system";
+import { wrapAsyncRoute } from "../providers/system";
 
 const route = async (
   req: Request<MessagePayload>,
   res: Response<HTMLResponse>
 ) => {
   const msg = await saveMessage(validateMessage(req.body).message);
-  const url = generateMessageUrl(msg.secureId);
-  const qrCodeUrl = await getQrCodeDataUrl(url);
+  const url = createMessageUrl(msg.secureId);
+  const qrCodeUrl = await createQrCodeDataUrl(url);
 
   res.status(StatusCodes.OK).send({
     message: getReasonPhrase(StatusCodes.OK),

@@ -1,35 +1,32 @@
 import "./app.css";
-import { fetchPage } from "./utils/fetch-page";
-import { getElement } from "./utils/get-element";
-import { bindCopyToClipboard } from "./utils/bind-copy-to-clipboard";
-import { getDynamicLoadContainer } from "./utils/get-dynamic-load-container";
-import { getMessageTextarea } from "./utils/get-message-textarea";
-import { MessagePayload } from "../shared/types/payload";
-import { initCharsCounter } from "./utils/init-chars-counter";
-import { showUnexpectedError } from "./utils/show-unexpected-error";
+import { getSavePage } from "./providers/page";
+import { getElement, getUnexpectedErrorElement } from "./providers/element";
+import { createCopyToClipboardEvent } from "./creators/event";
+import { getDynamicLoadContainerElement } from "./providers/element";
+import { getMessageTextareaElement } from "./providers/element";
+import { createCharsCounterEvent } from "./creators/event";
 
 document.addEventListener("DOMContentLoaded", () => {
   const submitButton = getElement<HTMLButtonElement>("#submit-button");
   const messageForm = getElement<HTMLFormElement>("#message-form");
 
-  initCharsCounter();
+  createCharsCounterEvent().bind();
 
   submitButton.addEventListener("click", async () => {
     if (!messageForm.reportValidity()) return;
 
     try {
-      getDynamicLoadContainer().innerHTML = await fetchPage<MessagePayload>(
-        "/save",
-        {
-          message: getMessageTextarea().value,
-        }
-      );
+      getDynamicLoadContainerElement().innerHTML = await getSavePage({
+        message: getMessageTextareaElement().value,
+      });
     } catch {
-      showUnexpectedError();
+      getUnexpectedErrorElement().show();
 
       return;
     }
 
-    bindCopyToClipboard(() => getElement<HTMLLinkElement>("#message-url").href);
+    createCopyToClipboardEvent(
+      () => getElement<HTMLLinkElement>("#message-url").href
+    ).bind();
   });
 });

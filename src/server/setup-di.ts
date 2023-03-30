@@ -2,7 +2,7 @@ import { Container } from "typedi";
 import { PrismaClient } from "@prisma/client";
 import { Config } from "./types/config";
 import winston from "winston";
-import { validateEnv } from "./utils/validate";
+import { validateEnv } from "./validators/system";
 
 export const setupDi = () => {
   Container.set(

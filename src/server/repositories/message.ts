@@ -1,6 +1,6 @@
 import { Message } from "@prisma/client";
-import { generateSecureId } from "../utils/general";
-import { getPrismaClient } from "../utils/container";
+import { createSecureId } from "../creators/secrets";
+import { getPrismaClient } from "../providers/container-service";
 
 export const findMessage = async (
   secureId: string
@@ -26,7 +26,7 @@ export const saveMessage = async (message: string): Promise<Message> => {
   return getPrismaClient().message.create({
     data: {
       value: message,
-      secureId: generateSecureId(),
+      secureId: createSecureId(),
     },
   });
 };

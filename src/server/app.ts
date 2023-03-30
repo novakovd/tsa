@@ -5,9 +5,9 @@ import "dotenv-defaults/config";
 import { router } from "./router";
 import bodyParser from "body-parser";
 import * as process from "process";
-import { getWebpackBuildHash } from "./utils/general";
+import { getWebpackBuildHash } from "./providers/system";
 import { setupDi } from "./setup-di";
-import { getConfig, getLogger } from "./utils/container";
+import { getConfig, getLogger } from "./providers/container-service";
 import { any } from "./routes/any";
 
 dotenv.config();

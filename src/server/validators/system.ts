@@ -1,33 +1,9 @@
-import Joi, { AnySchema } from "joi";
-import { MessagePayload, SecureIdPayload } from "../../shared/types/payload";
-import { getConfig, getLogger } from "./container";
 import { ConfigPropsAware } from "../types/config";
-import process from "process";
 import * as dotenv from "dotenv";
-import * as fs from "fs";
-
-export const validateMessage = (payload: MessagePayload): MessagePayload => {
-  const validationResult = Joi.object({
-    message: Joi.string()
-      .min(1)
-      .max(Number(getConfig().maxTextLength))
-      .required(),
-  }).validate(payload);
-
-  if (validationResult.error) throw validationResult.error;
-
-  return validationResult.value;
-};
-
-export const validateSecureid = (payload: SecureIdPayload): SecureIdPayload => {
-  const validationResult = Joi.object({
-    secureId: Joi.string().required(),
-  }).validate(payload);
-
-  if (validationResult.error) throw validationResult.error;
-
-  return validationResult.value;
-};
+import fs from "fs";
+import Joi, { AnySchema } from "joi";
+import process from "process";
+import { getLogger } from "../providers/container-service";
 
 export const validateEnv = (): ConfigPropsAware => {
   const defaults = dotenv.parse(fs.readFileSync(".env.defaults"));

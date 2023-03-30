@@ -1,6 +1,7 @@
 import { StatusCodes } from "http-status-codes";
+import { MessagePayload, SecureIdPayload } from "../../shared/types/payload";
 
-export const fetchPage = async <T>(url: string, data: T): Promise<string> => {
+const getPage = async <T>(url: string, data: T): Promise<string> => {
   return fetch(url, {
     method: "POST",
     mode: "cors",
@@ -20,4 +21,14 @@ export const fetchPage = async <T>(url: string, data: T): Promise<string> => {
     })
     .then((res) => res.json())
     .then((json) => json.html);
+};
+
+export const getSavePage = async (payload: MessagePayload): Promise<string> => {
+  return getPage<MessagePayload>("/save", payload);
+};
+
+export const getRevealPage = async (
+  payload: SecureIdPayload
+): Promise<string> => {
+  return getPage<SecureIdPayload>("/reveal", payload);
 };

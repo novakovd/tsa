@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { GenericResponse } from "../types/response";
-import { getLogger } from "../utils/container";
+import { getLogger } from "../providers/container-service";
 
 export const LogError = (
   err: Error,

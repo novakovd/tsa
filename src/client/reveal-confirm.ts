@@ -1,10 +1,8 @@
-import { getElement } from "./utils/get-element";
-import { fetchPage } from "./utils/fetch-page";
-import { getDynamicLoadContainer } from "./utils/get-dynamic-load-container";
-import { bindCopyToClipboard } from "./utils/bind-copy-to-clipboard";
-import { getMessageTextarea } from "./utils/get-message-textarea";
-import { SecureIdPayload } from "../shared/types/payload";
-import { showUnexpectedError } from "./utils/show-unexpected-error";
+import { getElement, getUnexpectedErrorElement } from "./providers/element";
+import { getRevealPage } from "./providers/page";
+import { getDynamicLoadContainerElement } from "./providers/element";
+import { createCopyToClipboardEvent } from "./creators/event";
+import { getMessageTextareaElement } from "./providers/element";
 
 document.addEventListener("DOMContentLoaded", () => {
   const revealMessageButton = getElement<HTMLButtonElement>(
@@ -13,16 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   revealMessageButton.addEventListener("click", async (e) => {
     try {
-      getDynamicLoadContainer().innerHTML = await fetchPage<SecureIdPayload>(
-        "/reveal",
-        {
-          secureId: (e.target as HTMLDataElement).dataset.secureid as string,
-        }
-      );
+      getDynamicLoadContainerElement().innerHTML = await getRevealPage({
+        secureId: (e.target as HTMLDataElement).dataset.secureid as string,
+      });
     } catch {
-      showUnexpectedError();
+      getUnexpectedErrorElement().show();
     }
 
-    bindCopyToClipboard(() => getMessageTextarea().value);
+    createCopyToClipboardEvent(() => getMessageTextareaElement().value).bind();
   });
 });
