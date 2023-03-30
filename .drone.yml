@@ -12,7 +12,7 @@ steps:
       - >
         docker build
         --no-cache
-        --tag novakovd/tsa:${DRONE_BUILD_NUMBER}
+        --tag novakovd/tsa:$(git rev-parse --short HEAD)
         .
   - name: 'Run image'
     commands:
@@ -21,7 +21,7 @@ steps:
         --name tsa-rc
         --env APP_HOSTNAME=tsa-rc
         --network tsa-tests
-        novakovd/tsa:${DRONE_BUILD_NUMBER}
+        novakovd/tsa:$(git rev-parse --short HEAD)
   - name: 'Build e2e tests'
     commands:
       - >
@@ -43,7 +43,7 @@ steps:
   - name: 'Push to DockerHub'
     commands:
       - echo $PASSWORD | docker login -u $USERNAME --password-stdin
-      - docker push novakovd/tsa:${DRONE_BUILD_NUMBER}
+      - docker push novakovd/tsa:$(git rev-parse --short HEAD)
     environment:
       USERNAME:
         from_secret: docker_username

@@ -3,6 +3,8 @@
 ## DockerHub releases
 [https://hub.docker.com/r/novakovd/tsa/tags](https://hub.docker.com/r/novakovd/tsa/tags)
 
+Images are tagged with short commit SHA.
+
 ## Docker compose
 App can be launched using docker compose and DockerHub image
 
