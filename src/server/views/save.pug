@@ -4,9 +4,9 @@ include ./mixins/button
   span
     p.antialiased.text-3xl.text-center Here is the url that will allow you to share your message
   span
-    a#message-url.font-medium.text-blue-600.text-base(
+    a#message-url.font-medium.text-blue-600.text-xs(
       href=url,
-      class="hover:underline md:text-xl"
+      class="hover:underline sm:text-sm md:text-xl"
     )= url
   span.box-content.p-2.border-2
     img(src=qrCodeUrl)

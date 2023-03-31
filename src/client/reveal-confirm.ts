@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const revealMessageButton = getElement<HTMLButtonElement>(
     "#reveal-message-button"
   );
+  const unexpectedError = getUnexpectedErrorElement();
 
   revealMessageButton.addEventListener("click", async (e) => {
     try {
@@ -15,7 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
         secureId: (e.target as HTMLDataElement).dataset.secureid as string,
       });
     } catch {
-      getUnexpectedErrorElement().show();
+      unexpectedError.show();
+
+      return;
     }
 
     createCopyToClipboardEvent(() => getMessageTextareaElement().value).bind();

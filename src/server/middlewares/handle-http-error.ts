@@ -10,7 +10,7 @@ export const handleHTTPError = (
 ) => {
   if (!(err instanceof HTTPError)) return next(err);
 
-  res.status(err.statusCode).send({
+  return res.status(err.statusCode).send({
     message: err.message,
     html: null,
   });

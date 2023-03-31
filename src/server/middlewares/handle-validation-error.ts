@@ -11,7 +11,7 @@ export const handleValidationError = (
 ) => {
   if (!(err instanceof ValidationError)) return next(err);
 
-  res.status(StatusCodes.BAD_REQUEST).send({
+  return res.status(StatusCodes.BAD_REQUEST).send({
     message: err.message,
     html: null,
   });

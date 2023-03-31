@@ -9,6 +9,7 @@ import { createCharsCounterEvent } from "./creators/event";
 document.addEventListener("DOMContentLoaded", () => {
   const submitButton = getElement<HTMLButtonElement>("#submit-button");
   const messageForm = getElement<HTMLFormElement>("#message-form");
+  const unexpectedError = getUnexpectedErrorElement();
 
   createCharsCounterEvent().bind();
 
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         message: getMessageTextareaElement().value,
       });
     } catch {
-      getUnexpectedErrorElement().show();
+      unexpectedError.show();
 
       return;
     }
