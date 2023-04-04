@@ -21,7 +21,27 @@ steps:
         --name tsa-rc
         --env APP_HOSTNAME=tsa-rc
         --network tsa-tests
+        -v ./src:/app/src
+        -v ./tests:/app/tests
         novakovd/tsa:$(git rev-parse --short HEAD)
+  - name: 'Install npm dependencies'
+    commands:
+      - >
+        docker exec -i
+        tsa-rc
+        npm i
+  - name: 'Run unit tests'
+    commands:
+      - >
+        docker exec -i
+        tsa-rc
+        npm run tests:run:unit
+  - name: 'Run functional tests'
+    commands:
+      - >
+        docker exec -i
+        tsa-rc
+        npm run tests:run:functional
   - name: 'Build e2e tests'
     commands:
       - >
